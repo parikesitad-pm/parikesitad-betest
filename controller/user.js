@@ -32,15 +32,15 @@ exports.login = async (req, res) => {
 
 exports.getUserList = async (req, res) => {
   try {
-    const cacheKey = "users_all";
-    const cachedData = await config.get(cacheKey);
-    if (cachedData) {
-      console.log("got cached data");
-      return res.json(cachedData);
-    }
+    // const cacheKey = "users_all";
+    // const cachedData = await config.get(cacheKey);
+    // if (cachedData) {
+    //   console.log("got cached data");
+    //   return res.json(cachedData);
+    // }
 
     const user = await User.find().sort({ createdAt: -1 });
-    await config.saveWithTtl(cacheKey, user, 300);
+    // await config.saveWithTtl(cacheKey, user, 300);
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
@@ -135,7 +135,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// * req account
+// * @param {accountNumber}
 exports.getByAccount = async (req, res) => {
   const accountNumber = req.params.id;
 
@@ -151,7 +151,7 @@ exports.getByAccount = async (req, res) => {
   }
 };
 
-// * req account
+// * @param {identityNumber}
 exports.getByIdentity = async (req, res) => {
   const identityNumber = req.params.id;
 

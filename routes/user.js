@@ -13,13 +13,18 @@ const { requireSignIn } = require("../middleware/auth");
 
 router.post("/login", login);
 
-router.get("/all", getUserList);
+router.get("/all", requireSignIn, getUserList);
 router.post("/", requireSignIn, addUser);
 router.put("/", requireSignIn, updateUser);
 router.delete("/:id", requireSignIn, deleteUser);
-// get accountNumber
-router.get("/account/:id", getByAccount);
-// get identityNumber
+
+// *
+//  @param {accountNumber}
+// *
+router.get("/account/:id", requireSignIn, getByAccount);
+// *
+// @param {identityNumber}
+// *
 router.get("/ID/:id", requireSignIn, getByIdentity);
 
 module.exports = router;
