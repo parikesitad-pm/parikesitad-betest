@@ -1,0 +1,54 @@
+GET http://localhost:8000/user/all
+# Content-Type: application/json
+# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+###
+# ! login
+POST http://localhost:8000/user/login/
+Content-Type: application/json
+
+{
+  "emailAddress": "alpha@gmicroservices.co"
+}
+
+###
+# * get by account Number
+GET http://localhost:8000/user/account/19333222299
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+###
+# * get by ID Number
+GET http://localhost:8000/user/ID/1933341223312
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+
+###
+# ! addNewUser
+POST http://localhost:8000/user
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+{
+  "userName": "charly",
+  "accountNumber": "193332232991",
+  "emailAddress": "charly@gmicroservices.co",
+  "identityNumber": "111122233222"
+}
+
+###
+PUT http://localhost:8000/user/
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+{
+  "id":"6263e7fc3733eadfb266a069",
+  "userName": "ultraman",
+  "accountNumber": "193332sas19",
+  "emailAddress": "u@yahee.co",
+  "identityNumber": "193332123312"
+}
+###
+DELETE http://localhost:8000/user/62641a81353da120a7c6c087
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+
+###
