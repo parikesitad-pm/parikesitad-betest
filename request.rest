@@ -25,8 +25,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M
 ###
 # ! addNewUser
 POST http://localhost:8000/user
-Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
+Content-Type: application/json
 
 {
   "userName": "charly",
