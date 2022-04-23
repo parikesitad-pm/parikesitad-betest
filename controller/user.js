@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const config = require("../services/config");
+const Redis = require("../services/config");
 
 exports.login = async (req, res) => {
   const { emailAddress } = req.body;
@@ -87,8 +87,9 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  const { id, identityNumber, accountNumber, emailAddress, userName } =
-    req.body;
+  const { identityNumber, accountNumber, emailAddress, userName } = req.body;
+
+  const id = req.params.id;
 
   const newUser = {
     identityNumber,
@@ -97,7 +98,7 @@ exports.updateUser = async (req, res) => {
     userName,
   };
   try {
-    let user = await User.findOne({ id });
+    let user = await User.findOne({ _id: id });
 
     if (!user) {
       res.status(404).json({ message: "User not found" });
@@ -146,7 +147,7 @@ exports.getByAccount = async (req, res) => {
 
   try {
     let numberAkun;
-    const redis_key = `user_account_${id}`;
+    const redis_key = `user_account_${accountNumber}`;
     const { reply } = await Redis.getCache(redis_key);
     console.log(redis_key, reply);
     if (reply) {
@@ -177,7 +178,7 @@ exports.getByIdentity = async (req, res) => {
 
   try {
     let idNumber;
-    const redis_key = `user_id_${id}`;
+    const redis_key = `user_id_${identityNumber}`;
     const { reply } = await Redis.getCache(redis_key);
     console.log(redis_key, reply);
     if (reply) {

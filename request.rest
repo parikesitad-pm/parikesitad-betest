@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/user
+PUT http://localhost:8000/user/62640f5ff7fbbe28c10d71fa
 Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
 
