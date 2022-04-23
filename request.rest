@@ -1,4 +1,4 @@
-GET http://localhost:8000/user/all
+GET https://ms-parikesitad-betest.herokuapp.com/user/all
 # Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
 
