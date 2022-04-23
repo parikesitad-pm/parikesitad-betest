@@ -12,6 +12,8 @@ yarn install
 
 ### POST - Login
 
+use existing email for get Token
+
 ```
 http://localhost:8000/user/login
 
@@ -55,7 +57,7 @@ authorization: token
 ### PUT - Update User
 
 ```
-http://localhost:8000/user
+http://localhost:8000/user/{id}
 authorization: token
 {
   newUser
@@ -68,3 +70,4 @@ authorization: token
 http://localhost:8000/user/{id}
 authorization: token
 ```
+
