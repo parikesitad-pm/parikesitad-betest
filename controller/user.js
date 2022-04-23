@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-// const config = require("../services/config");
+const config = require("../services/config");
 
 exports.login = async (req, res) => {
   const { emailAddress } = req.body;
@@ -32,16 +32,23 @@ exports.login = async (req, res) => {
 
 exports.getUserList = async (req, res) => {
   try {
-    // const cacheKey = "users_all";
-    // const cachedData = await config.get(cacheKey);
-    // if (cachedData) {
-    //   console.log("got cached data");
-    //   return res.json(cachedData);
-    // }
+    let getUsers;
 
-    const user = await User.find().sort({ createdAt: -1 });
-    // await config.saveWithTtl(cacheKey, user, 300);
-    res.status(200).json(user);
+    const redis_key = "get_all_users";
+    const { reply } = await Redis.getCache(redis_key);
+    console.log(redis_key, reply);
+    if (reply) {
+      console.log("exec cache");
+      getUsers = JSON.parse(reply);
+    } else {
+      console.log("exec db");
+      const resUser = await User.find().sort({ createdAt: -1 });
+      const redisValue = JSON.stringify(resUser);
+      Redis.setCache(redis_key, redisValue);
+      getUsers = resUser;
+    }
+
+    res.status(200).json(getUsers);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "fetchIng Failed | Server Error" });
@@ -131,14 +138,29 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// * @param {accountNumber}
+/**
+ *@param {accountNumber}
+ **/
 exports.getByAccount = async (req, res) => {
   const accountNumber = req.params.id;
 
   try {
-    const user = await User.findOne({ accountNumber });
+    let numberAkun;
+    const redis_key = `user_account_${id}`;
+    const { reply } = await Redis.getCache(redis_key);
+    console.log(redis_key, reply);
+    if (reply) {
+      console.log("exec cache");
+      numberAkun = JSON.parse(reply);
+    } else {
+      console.log("exec db");
+      const resAccount = await User.findOne({ accountNumber });
+      const redisValue = JSON.stringify(resAccount);
+      Redis.setCache(redis_key, redisValue);
+      numberAkun = resAccount;
+    }
 
-    return res.status(200).json(user);
+    res.status(200).json(numberAkun);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -147,14 +169,29 @@ exports.getByAccount = async (req, res) => {
   }
 };
 
-// * @param {identityNumber}
+/**
+ * @param {identityNumber}
+ **/
 exports.getByIdentity = async (req, res) => {
   const identityNumber = req.params.id;
 
   try {
-    const user = await User.find({ identityNumber });
+    let idNumber;
+    const redis_key = `user_id_${id}`;
+    const { reply } = await Redis.getCache(redis_key);
+    console.log(redis_key, reply);
+    if (reply) {
+      console.log("exec cache");
+      idNumber = JSON.parse(reply);
+    } else {
+      console.log("exec db");
+      const resId = await User.findOne({ identityNumber });
+      const redisValue = JSON.stringify(resId);
+      Redis.setCache(redis_key, redisValue);
+      idNumber = resId;
+    }
 
-    return res.status(200).json(user);
+    res.status(200).json(idNumber);
   } catch (error) {
     console.log(error);
     res.status(500).json({
