@@ -15,7 +15,7 @@ router.post("/login", login);
 
 router.get("/all", requireSignIn, getUserList);
 router.post("/", requireSignIn, addUser);
-router.put("/", requireSignIn, updateUser);
+router.put("/:id", requireSignIn, updateUser);
 router.delete("/:id", requireSignIn, deleteUser);
 
 // *

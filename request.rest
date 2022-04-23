@@ -8,7 +8,7 @@ POST http://localhost:8000/user/login/
 Content-Type: application/json
 
 {
-  "emailAddress": "alpha@gmicroservices.co"
+  "emailAddress": "admin@gmicroservices.co"
 }
 
 ###
@@ -36,16 +36,15 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M
 }
 
 ###
-PUT http://localhost:8000/user/
+PUT http://localhost:8000/user
 Content-Type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY0MGY3M2Y3ZmJiZTI4YzEwZDcxZmUiLCJpYXQiOjE2NTA3MjU4NDksImV4cCI6MTY1MDc2MTg0OX0.SObUFE9mVItjCuorChkiMkx1mu88ByGpXBiImTchRZU
 
 {
-  "id":"6263e7fc3733eadfb266a069",
-  "userName": "ultraman",
-  "accountNumber": "193332sas19",
-  "emailAddress": "u@yahee.co",
-  "identityNumber": "193332123312"
+    "userName": "ultramanTiga",
+    "accountNumber": "222222333",
+    "emailAddress": "ultramantiga@gmicroservices.co",
+    "identityNumber": "11111111"
 }
 ###
 DELETE http://localhost:8000/user/62641a81353da120a7c6c087

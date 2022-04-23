@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const config = require("../services/config");
+// const config = require("../services/config");
 
 exports.login = async (req, res) => {
   const { emailAddress } = req.body;
@@ -80,35 +80,31 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  try {
-    const { id, userName, emailAddress } = req.body;
+  const { id, identityNumber, accountNumber, emailAddress, userName } =
+    req.body;
 
-    let user;
-    user = await User.findOne({ _id: id });
+  const newUser = {
+    identityNumber,
+    accountNumber,
+    emailAddress,
+    userName,
+  };
+  try {
+    let user = await User.findOne({ id });
 
     if (!user) {
       res.status(404).json({ message: "User not found" });
-    } else if (user.userName?.toLowerCase() === userName.toLowerCase()) {
-      res.status(404).json({ message: "User already exists" });
-    } else if (
-      user.emailAddress?.toLowerCase() === emailAddress.toLowerCase()
-    ) {
-      res.status(404).json({ message: "Email already exists" });
-    } else {
-      const newUser = {
-        ...req.body,
-      };
-
-      if (user) {
-        user = await User.findOneAndUpdate(
-          { _id: id },
-          { $set: newUser },
-          { new: true }
-        );
-      }
-
-      return res.status(200).json(user);
     }
+
+    if (user) {
+      user = await User.findOneAndUpdate(
+        { _id: id },
+        { $set: newUser },
+        { new: true }
+      );
+    }
+
+    return res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({
